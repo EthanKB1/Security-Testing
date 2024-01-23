@@ -8,7 +8,8 @@
 ## Requirement 2 - OWASP Juice Shop Functionality Testing
 
 _When conducting a security test, you will need to understand what and how the application
-normally works. Therefore, you should be able to answer the following questions:
-[]What are the features and functions of the application?
-[] What are the inputs and outputs of the application?
-[]What are the expected and unexpected behaviours of the application?_
+normally works. Therefore, you should be able to answer the following questions:_
+
+-[] What are the features and functions of the application?
+-[] What are the inputs and outputs of the application?
+-[] What are the expected and unexpected behaviours of the application?
