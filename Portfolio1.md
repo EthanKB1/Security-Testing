@@ -48,31 +48,6 @@ For this attempt, I entered an HTML iframe element which embeds a SoundCloud pla
 
 The only issue I have right now is that my Kali cannot connect to the internet meaning that the SoundCloud widget won't be displayed on the webpage.
 
-### Attempt 4
-
-For this attempt, I performed a Reflected XSS attack. A Reflected XSS attack happens when an attacker injects browser executable code within a single HTTP response.
-
-The steps which I took to perform this reflected XSS attack was that I created an account on Juiceshop and bought 2 items. I then went to the "Track Order" page 
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6146f821-093e-40b1-88ab-175b276e35ea)
-
-As you can see from the URL of the page there is an ID of "id=1aed-5b......" and this is vulnerable to these sorts of attacks
-
-So what I did was I changed the ID after the equals sign to ```<iframe src="javascript:alert('xss')">```
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/16579167-412f-4d46-b70d-7771962f0365)
-
-After the attack was done this was the result of what I got
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ec8a25e5-0ddd-4fbc-a19c-90a0a3dcf731)
-
-_Problems with attack performed_
-
-Upon further research, the expected output was supposed to be
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0df281e7-9016-41a2-ad92-40f256d84470)
-
-
 ### Failed attempts
 
 This line of code ```<img src="javascript:alert('XSS')">``` did not output anything. This is the result I got:
@@ -83,13 +58,33 @@ I later then tried this ```<img src="https://www.wfla.com/wp-content/uploads/sit
 
 what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` is to execute a JavaScript alert when the image tag is rendered on the page.
 
+### Attempt 4
 
-_References used_
+In this attempt, I am going to try and perform a server-side XSS protection attack. A server-side attack aims to bypass the security measures implemented on the server side to prevent or mitigate cross-site scripting vulnerabilities. This targets weaknesses in the server-side processing of user input or output encoding.
+
+For this attack, I'm creating a new account on JuiceShop
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/510550b2-7537-4f94-9594-2b194a1e9f4e)
+
+And I will need to have Burp Suite Interceptor turned on
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/53a9d09d-9f5f-4310-a86d-002d67357c3c)
+
+However upon clicking on "Open browser" nothing happens and then I get prompted with an error
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dc95bd5b-777f-4b56-964a-30e6ef4b5ca3)
+
+As I have gotten this error I cannot continue with this attack.
+
+### _References used_
 
 Anusha Ihalapathirana (2021) OWASP Juice Shop — XSS Tier 0 and XSS Tier 1 Challenge Solutions. Available at: https://medium.com/swlh/owasp-juice-shop-xss-tier-0-and-xss-tier-1-challenge-solutions-48d414e42d2a (accessed 3 February 2024).
 
 Cross-Site Scripting (XSS):: Pwning OWASP Juice Shop (2024) Available at: https://pwning.owasp-juice.shop/companion-guide/latest/part2/xss.html (accessed 3 February 2024).
 
+Gao, W. (2020) Juice Shop 3.6 - Client Side XSS Protection - https://www.youtube.com/watch?v=9x7vAOgepic
+
+‌
 
 
 
