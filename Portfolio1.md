@@ -48,6 +48,30 @@ For this attempt, I entered an HTML iframe element which embeds a SoundCloud pla
 
 The only issue I have right now is that my Kali cannot connect to the internet meaning that the SoundCloud widget won't be displayed on the webpage.
 
+### Attempt 4
+
+For this attempt, I performed a Reflected XSS attack. A Reflected XSS attack happens when an attacker injects browser executable code within a single HTTP response.
+
+The steps which I took to perform this reflected XSS attack was that I created an account on Juiceshop and bought 2 items. I then went to the "Track Order" page 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6146f821-093e-40b1-88ab-175b276e35ea)
+
+As you can see from the URL of the page there is an ID of "id=1aed-5b......" and this is vulnerable to these sorts of attacks
+
+So what I did was I changed the ID after the equals sign to ```<iframe src="javascript:alert('xss')">```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/16579167-412f-4d46-b70d-7771962f0365)
+
+After the attack was done this was the result of what I got
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ec8a25e5-0ddd-4fbc-a19c-90a0a3dcf731)
+
+_Problems with attack performed_
+
+Upon further research, the expected output was supposed to be
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0df281e7-9016-41a2-ad92-40f256d84470)
+
 
 ### Failed attempts
 
@@ -58,6 +82,7 @@ This line of code ```<img src="javascript:alert('XSS')">``` did not output anyth
 I later then tried this ```<img src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1">``` but this turned out to not work out as well as this is a regular image tag and not an XSS payload.
 
 what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` is to execute a JavaScript alert when the image tag is rendered on the page.
+
 
 _References used_
 
