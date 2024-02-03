@@ -12,7 +12,7 @@
 The first attempt at this was me inputting a piece of HTML code into the search bar of JuiceShop
 
 The line of code was:
-```<h1>Hello Im in</h1>"```
+```<h1>Hello Im in</h1>```
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/58708b3b-905a-44f7-9b38-0c64c6306bf2)
 
@@ -28,7 +28,7 @@ _Since this is a simple execution I did not come across any problems_
 For this attempt at Cross-Site Scripting, I performed a DOM XSS attack that uses malicious code to modify the elements/environment in the client-side script.
 
 The code I used for this attack was:
-"<iframe src="javascript:alert('xss')">"
+```<iframe src="javascript:alert('xss')">```
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/07628db3-e565-492b-a617-ed539cf969d4)
 
