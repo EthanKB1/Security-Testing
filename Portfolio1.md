@@ -48,7 +48,7 @@ For this attempt, I entered an HTML iframe element which embeds a SoundCloud pla
 
 The only issue I have right now is that my Kali cannot connect to the internet meaning that the SoundCloud widget won't be displayed on the webpage.
 
-### Failed attempts
+## Failed attempts
 
 This line of code ```<img src="javascript:alert('XSS')">``` did not output anything. This is the result I got:
 
@@ -76,7 +76,7 @@ However upon clicking on "Open browser" nothing happens and then I get prompted 
 
 As I have gotten this error I cannot continue with this attack.
 
-### _References used_
+## _References used_
 
 Anusha Ihalapathirana (2021) OWASP Juice Shop — XSS Tier 0 and XSS Tier 1 Challenge Solutions. Available at: https://medium.com/swlh/owasp-juice-shop-xss-tier-0-and-xss-tier-1-challenge-solutions-48d414e42d2a (accessed 3 February 2024).
 
