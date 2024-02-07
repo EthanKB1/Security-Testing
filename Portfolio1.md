@@ -48,6 +48,30 @@ For this attempt, I entered an HTML iframe element which embeds a SoundCloud pla
 
 The only issue I have right now is that my Kali cannot connect to the internet meaning that the SoundCloud widget won't be displayed on the webpage.
 
+### Attempt 4
+
+In this attempt, I will try and perform a server-side XSS protection attack. A server-side attack aims to bypass the security measures implemented on the server side to prevent or mitigate cross-site scripting vulnerabilities. This targets weaknesses in the server-side processing of user input or output encoding.
+
+For this attack, I'm creating a new account on JuiceShop
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/510550b2-7537-4f94-9594-2b194a1e9f4e)
+
+And I will need to have Burp Suite Interceptor turned on
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/53a9d09d-9f5f-4310-a86d-002d67357c3c)
+
+I have now intercepted the Burpsuite login, bringing me to this page.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/d99848c1-de98-407e-b8b8-ee49b56e0976)
+
+From this point, I would need to change the "email" to ```<iframe src=\"javascript:alert('xss')\">```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/88f8dba1-968d-4841-943f-f4ba61062c40)
+
+once that is done I would then need to send my request and this will get sent to the response tab. This is what gets displayed
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dfccd464-6a50-4db9-bb68-3233d475a45a)
+
 ## Failed attempts
 
 This line of code ```<img src="javascript:alert('XSS')">``` did not output anything. This is the result I got:
@@ -58,23 +82,6 @@ I later then tried this ```<img src="https://www.wfla.com/wp-content/uploads/sit
 
 what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` is to execute a JavaScript alert when the image tag is rendered on the page.
 
-### Attempt 4
-
-In this attempt, I am going to try and perform a server-side XSS protection attack. A server-side attack aims to bypass the security measures implemented on the server side to prevent or mitigate cross-site scripting vulnerabilities. This targets weaknesses in the server-side processing of user input or output encoding.
-
-For this attack, I'm creating a new account on JuiceShop
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/510550b2-7537-4f94-9594-2b194a1e9f4e)
-
-And I will need to have Burp Suite Interceptor turned on
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/53a9d09d-9f5f-4310-a86d-002d67357c3c)
-
-However upon clicking on "Open browser" nothing happens and then I get prompted with an error
-
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dc95bd5b-777f-4b56-964a-30e6ef4b5ca3)
-
-As I have gotten this error I cannot continue with this attack.
 
 ## _References used_
 
