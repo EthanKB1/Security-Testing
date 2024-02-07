@@ -72,6 +72,8 @@ once that is done I would then need to send my request and this will get sent to
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dfccd464-6a50-4db9-bb68-3233d475a45a)
 
+*note - Login credentials may be different as originally this attempt was a failure but now it has been resolved
+
 ## Failed attempts
 
 This line of code ```<img src="javascript:alert('XSS')">``` did not output anything. This is the result I got:
