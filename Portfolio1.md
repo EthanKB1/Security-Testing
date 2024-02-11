@@ -91,9 +91,33 @@ what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` 
 
 ### Attempt 1
 
-For this attack, I signed in as an admin using this sign '''admin' or 1=1;-'''
+For this attack, I signed in as an admin using this sign ```admin' or 1=1;-```
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/58cff92d-ee83-4a78-8d28-07f71b75d00b)
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/953b3519-6204-4805-8523-b85931a0b282)
+
+Another way of making this attack is through BurpSuite, How you'd make this injection attack is first to try and log into the admin account on JuiceShop by inputting ```admin``` and ```admin``` for both user and password, when this is done you'd get an error saying 'Invalid email or password'
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/cc20336f-007e-4470-9d4b-2e1b1da6f9f7)
+
+If you go onto burpsuite and go on proxy > http history you'd then be presented with all the requests which have been made. If you scroll down you'd see a request for user login called ```/rest/user/login```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/8bb24b8c-73f5-4d34-bf88-54a56e6d2e0a)
+
+When you click on the reqeust it will show what you tried to log in as
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/e183c22b-f49b-4f54-8e25-f540f049ef6a)
+
+Now the next step is to send this to the Repeater in Burpsuite, once this is in the repeater you will be presented with this information
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c115495a-baa4-48d7-81d4-33c33b2a4eb1)
+
+Now in order to get the admin email you'd need to change the 'email' to ```admin' or 1=1 --```, once this has been done you can send the request and you will then be presented with a token and the email of the admin for juice shop
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6620ac9b-69e5-4add-bdb1-022ba686719c)
+
+
+### Attempt 2
 
 
 
