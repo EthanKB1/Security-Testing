@@ -84,6 +84,18 @@ I later then tried this ```<img src="https://www.wfla.com/wp-content/uploads/sit
 
 what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` is to execute a JavaScript alert when the image tag is rendered on the page.
 
+## Requirement 4 - Exploit a SQL Injection vulnerability
+
+### What are SQL injection attacks?
+
+
+### Attempt 1
+
+For this attack, I signed in as an admin using this sign '''admin' or 1=1;-'''
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/58cff92d-ee83-4a78-8d28-07f71b75d00b)
+
+
 
 ## _References used_
 
