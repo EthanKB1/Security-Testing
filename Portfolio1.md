@@ -179,6 +179,8 @@ Cross-Site Scripting (XSS):: Pwning OWASP Juice Shop (2024) Available at: https:
 
 Gao, W. (2020) Juice Shop 3.6 - Client Side XSS Protection - https://www.youtube.com/watch?v=9x7vAOgepic
 
+‌Hamdan, M. (2020) Broken Authentication and SQL Injection - OWASP Juice Shop TryHackMe.
+
 ‌
 
 
