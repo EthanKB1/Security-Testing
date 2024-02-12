@@ -100,11 +100,11 @@ Another way of making this attack is through BurpSuite, How you'd make this inje
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/cc20336f-007e-4470-9d4b-2e1b1da6f9f7)
 
-If you go onto burpsuite and go on proxy > http history you'd then be presented with all the requests which have been made. If you scroll down you'd see a request for user login called ```/rest/user/login```
+If you go onto burpsuite and go on proxy > http history you'd then be presented with all the requests which have been made. If you scroll down you'll see a request for user login called ```/rest/user/login```
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/8bb24b8c-73f5-4d34-bf88-54a56e6d2e0a)
 
-When you click on the reqeust it will show what you tried to log in as
+When you click on the request it will show what you tried to log in as
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/e183c22b-f49b-4f54-8e25-f540f049ef6a)
 
@@ -119,6 +119,56 @@ Now in order to get the admin email you'd need to change the 'email' to ```admin
 
 ### Attempt 2
 
+In this attempt, I will log in as one of the accounts on Juiceshop. Upon further research, I have come across the "LoginBenderChallenge". To find this email for Bender you'd need to look at the reviews of each product that the shop has until you come across the Bender email.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/158e6172-3ec0-4046-8bdf-f10aeb353790)
+
+So in this case the email was found under the "Banana Juice" listing. The next step is to try and log into the account and to do this you'd need to have BurpSuite open. Now you would need to try and sign into an account in this case I used ```j``` for the email and ```.``` for the password
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/1b056b58-b2ae-43c8-96d8-eb0b61ce1f2e)
+
+Now the next step is to open Burpsuite and navigate to the Proxy tab then Intercept, here you would need to turn Intercept on and then you'd be able to attempt to login as shown above. Once you have attempted to log in you will get an error but in BurpSuite you will be presented with this information
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c08d0c7d-244d-4dfc-bcbd-b1080fda98e1)
+
+Now once you have this information all you'd need to do is change the "email" to ```bender@juice-sh.op'--```, once this is done you can then forward the request you have intercepted.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/1da36f0e-37ee-418e-af28-97afb4162b36)
+
+Now that you have forwarded the request you can turn intercept off and go back to the website. Now that you are back on the website you will notice that you are in the Bender account 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/3c34211b-7f45-4c63-83ad-c24fbdcfc41a)
+
+## Failed Attempt
+
+### Attempt 3
+
+In this attempt, I am going to try and get the admin password. From an earlier attempt, I was able to get the admin email but I was not able to get the password. Now what I am going to do is try and log in as the admin with the email I obtained but the password is just going to be ```fff```. Now what I need to do is open Burpsuite and turn intercept on
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9d663952-27eb-4527-ac81-04e7cefa00dc)
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0039d3e5-ceb6-42e5-b5af-012fbd4dd08a)
+
+Now the information it intercepted can be viewed and you can see the email and password used. Now the next step is to highlight all of the information and send it to the intruder
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c533931d-7c43-4be2-a579-e8612b116806)
+
+Once the request has been sent to the intruder what needs to be done now is first select ```Clear``` and then highlight the password and select ```add```. Before I move on to the next step make sure that the "Choose attack type" is set to "Sniper"
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/56a0ab66-8f31-400b-b9bb-ea865a8cf567)
+
+Now that the password has been highlighted and the attack type is set to sniper I can now move to the "Payloads" section where I will now see this screen
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/850ce2d1-de2e-4ead-8ca5-c20e6c791174)
+
+The next thing to do is go under payload settings and select load. This is the screen that comes up
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a7cb13c0-a838-424f-bc2b-37748785e890)
+
+For this bit, I need to try and find the words list folder. to find this folder you need to go to ```usr/share/wordlists/```
+
+I wont be able to continue with this attack as I appear to be missing a folder called "seclists" which is under "wordlist".
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c4df5247-a710-4dbf-8b9d-7a3b941a7196)
 
 
 ## _References used_
