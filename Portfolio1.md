@@ -170,6 +170,55 @@ I wont be able to continue with this attack as I appear to be missing a folder c
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c4df5247-a710-4dbf-8b9d-7a3b941a7196)
 
+## Requirement 5 - Broken Access Control vulnerability
+
+### What are Broken access control attacks?
+
+
+### Attempt 1
+
+I'm going to view someone else basket other than mine. In order to do this I am going to sign into the admin account and head over to "Your Basket"
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2fcf35d2-3c32-45de-90a6-d03bc976f352)
+
+Now in order for me to view the other basket I would need to open the inspect panel and from there I would need to navigate over to the storage tab
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c38437f9-a6f0-4da7-ada2-d323f576bb4f)
+
+Once on the storage tab, I would need to navigate over to "Session Storage" where the HTTP address would appear, once on it there will be 2 items in a table which are ```bid``` and ```ItemTotal```. In order to view someone else's basket you'd need to change the ```bid``` value to a different number.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/922ccd04-1216-41d1-8030-bd9e7a0cc50b)
+
+Here is the bid number changed and the view of the other basket:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/bb8ed938-9d5a-4d5c-a597-91418e61f416)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/1db97ca4-5f02-4bc8-b04c-eb2e7ad94d4c)
+
+I have come across something when you change the ```bid``` value to be more than 5 nothing will show
+
+### Attempt 2
+
+In this attempt, I am going to try and access the administration page that the juice shop have. I have done some research into this and in order for me to view the page i would need to be signed in as the admin if I was signed into any other account I wouldn't be allowed to access the page.
+
+First of all for me to find the administration page I would need to go into the inspect panel and navigate my way to "Debugger" -> "Main.js". once you have the "Main'js" open you can then press ```CTRL + F``` and type in admin, Now you'd need to find the line of code which looks like ```path: 'administration'```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/283f4338-12bb-4f7d-9946-19935a30211c)
+
+Once that has been found the next step is to type in the administration into the URL as shown below
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/95a49047-cc98-4a65-ac1b-17962f1501dd)
+
+Now that you've pressed enter you will taken to the administration page where you can view the registered users and the feedback which have been given
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ea28e13d-b7eb-4a03-93ae-bd62729044c4)
+
+### Attempt 3
+
+This is a quick attempt as this ties into Attempt 2 where we now have access to the administration page. For this attempt, I have the power to delete a review and as part of a challenge is that I must delete a 5-star review
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2805290e-54ac-4b4b-89f0-365cbb85902a)
+
 
 ## _References used_
 
