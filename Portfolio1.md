@@ -143,7 +143,7 @@ Now that you have forwarded the request you can turn intercept off and go back t
 
 ### Attempt 3
 
-In this attempt, I am going to try and get the admin password. From an earlier attempt, I was able to get the admin email but I was not able to get the password. Now what I am going to do is try and log in as the admin with the email I obtained but the password is just going to be ```fff```. Now what I need to do is open Burpsuite and turn intercept on
+In this attempt, I am going to try and get the admin password. From an earlier attempt, I was able to get the admin email but I was not able to get the password. Now what I am going to do is try and log in as the admin with the email I obtained but the password is just going to be ```fff```. Now what I need to do is open Burpsuite and turn Intercept on
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9d663952-27eb-4527-ac81-04e7cefa00dc)
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0039d3e5-ceb6-42e5-b5af-012fbd4dd08a)
@@ -166,7 +166,7 @@ The next thing to do is go under payload settings and select load. This is the s
 
 For this bit, I need to try and find the words list folder. to find this folder you need to go to ```usr/share/wordlists/```
 
-I wont be able to continue with this attack as I appear to be missing a folder called "seclists" which is under "wordlist".
+I won't be able to continue with this attack as I appear to be missing a folder called "seclists" which is under "wordlist".
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c4df5247-a710-4dbf-8b9d-7a3b941a7196)
 
@@ -199,7 +199,7 @@ I have come across something when you change the ```bid``` value to be more than
 
 ### Attempt 2
 
-In this attempt, I am going to try and access the administration page that the juice shop have. I have done some research into this and in order for me to view the page i would need to be signed in as the admin if I was signed into any other account I wouldn't be allowed to access the page.
+In this attempt, I am going to try and access the administration page that the juice shop has. I have done some research into this and in order for me to view the page I would need to be signed in as the admin if I was signed into any other account I wouldn't be allowed to access the page.
 
 First of all for me to find the administration page I would need to go into the inspect panel and navigate my way to "Debugger" -> "Main.js". once you have the "Main'js" open you can then press ```CTRL + F``` and type in admin, Now you'd need to find the line of code which looks like ```path: 'administration'```
 
@@ -215,9 +215,41 @@ Now that you've pressed enter you will taken to the administration page where yo
 
 ### Attempt 3
 
-This is a quick attempt as this ties into Attempt 2 where we now have access to the administration page. For this attempt, I have the power to delete a review and as part of a challenge is that I must delete a 5-star review
+This is a quick attempt as this ties into Attempt 2 where we now have access to the administration page. For this attempt, I have the power to delete a review and as part of a challenge, I must delete a 5-star review
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2805290e-54ac-4b4b-89f0-365cbb85902a)
+
+## Requirement 6 - Exploit an Authentication Bypass vulnerability
+
+### What is Broken authentication
+
+### Attempt 1
+
+In this attempt, I'm going to try and bypass the CAPTCHA and submit 10 or more customer feedbacks within 20 seconds. I will demonstrate what I have done to complete this challenge. First of all, on JuiceShop they have a section where a customer can submit some feedback on their website. To complete this attack you'd need to fill out the customer feedback form. Below is a picture of the form which needs to be filled out.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/4894fae2-5e90-41d5-b944-a55f130a356d)
+
+Before I click submit BurpSuite needs to be open and intercept to be turned on. Once that is on I can then press the submit button, once I pressed the submit button I went back onto BurpSuite and went over to the HTTP history tab under Proxy and then all the history appeared from when I pressed the submit button. Now what I need to do is to find the request from when the submit button was pressed. To find this easier I will need to look for ```/api/Feedbacks/```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/35084845-60b5-4ab4-824b-be2109e9da51)
+
+Now that I have found it I can see the information I entered appear on the request tab, this is how I know that I am on the correct one. Now the next step is to send this request to the intruder. Once in the intruder tab, I would need to highlight the comment I made and then add special characters to it, ```§```.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2daf582a-8929-444f-b4fc-6ac3f5dd4ab0)
+
+Now that I've added the character to both ends of the comment I made I can then make my way over to the "Payloads" tab. In the "Payloads" tab there is an option called "Payload settings [Simple List]" In this section, I will need to add numbers from 1 to 11.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9fe4dfb1-a3cb-46a4-b8fc-945f732d96d8)
+
+Now that I've added the numbers in I can start the attack, when I press the ```Start attack``` button another window comes up and shows each payload being executed and it does this 11 times.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/77558ebf-ec80-4083-b59c-fb8b4f5d1a7b)
+
+Now when you go back onto JuiceShop it shows that you have completed the challenge. Now to see if the attack worked I can sign into the admin account and go to the administration page and here I can see all the customer feedback including the ones I have done in the attack.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2ee568a4-b0c1-40e7-8f11-c46b4df925ad)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c60b2fd2-58b4-45eb-a0df-a1c12f9794b3)
 
 
 ## _References used_
@@ -229,6 +261,8 @@ Cross-Site Scripting (XSS):: Pwning OWASP Juice Shop (2024) Available at: https:
 Gao, W. (2020) Juice Shop 3.6 - Client Side XSS Protection - https://www.youtube.com/watch?v=9x7vAOgepic
 
 ‌Hamdan, M. (2020) Broken Authentication and SQL Injection - OWASP Juice Shop TryHackMe.
+
+‌Web Security Tutorials (2020) OWASP Juice Shop Solution for CAPTCHA Bypass - https://www.youtube.com/watch?v=dlKWtRDKQQ0
 
 ‌
 
