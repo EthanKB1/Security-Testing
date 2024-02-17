@@ -251,6 +251,30 @@ Now when you go back onto JuiceShop it shows that you have completed the challen
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c60b2fd2-58b4-45eb-a0df-a1c12f9794b3)
 
+### Attempt 2
+
+In this attempt, I am going to try and access the scoreboard of JuiceShop. The Scoreboard in Juiceshop allows you to track all the challenges you've done. At first, the scoreboard couldn't be accessed from the menu on JuiceShop. In this attempt, I am going to try and access the scoreboard.
+
+For me to access the scoreboard I need to open the inspect element on JuiceShop and it will bring me to the elements page.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9631347a-2410-4224-b187-85546d7dbdbe)
+
+Now I would need to navigate to the "Sources" tab. To reach this tab I would need to go to Debugger -> Sources. Now that I am on the Sources tab I would need to click on the file called ```main.js```, Once I have clicked on that file this should appear
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/82e90bf1-6048-4aae-ae7f-e9e84fcf2ef7)
+
+The next step is to search the path of scoreboards, to do this I would need to do ```CTRL + F```, which will allow me to search for ```score-board```, Once this has been put into the search bar the I went down one on the arrow and it took me to the path for score-boards.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/332f15f7-e053-498b-8c3f-1634935ea272)
+
+Now that I have found the path for the scoreboard I can now put this into the search bar of Firefox.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/005c3830-f1be-4d08-8af4-0fefee67575a)
+
+Now when I search for this It will take me to the Scoreboards page and I can view what challenges I have done
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/787a9d82-b8ad-4be7-84ed-709f7ef3e54b)
+
 
 ## _References used_
 
@@ -264,7 +288,8 @@ Gao, W. (2020) Juice Shop 3.6 - Client Side XSS Protection - https://www.youtube
 
 ‌Web Security Tutorials (2020) OWASP Juice Shop Solution for CAPTCHA Bypass - https://www.youtube.com/watch?v=dlKWtRDKQQ0
 
-‌
+‌thehackerish (2020) Broken Authentication and Session Management tutorial - thehackerish. Available at: https://thehackerish.com/broken-authentication-and-session-management-tutorial/ (accessed 17 February 2024).
+
 
 
 
