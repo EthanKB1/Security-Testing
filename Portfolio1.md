@@ -455,7 +455,7 @@ Now I can view the content of the file which in this case is just "hello". Now t
 
 This is the PNG file I am using:
 
-![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/550f1b35-d33a-4959-8419-53cdb9ccae73)
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dcaf6fca-7038-4d51-b4c6-8fc099cad207)
 
 Now that the data has been deleted the next step is to get the data from the PNG file to do this I will need to open the image within Notepad and I will be presented with this information
 
