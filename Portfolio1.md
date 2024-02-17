@@ -321,6 +321,131 @@ Since this has been completed I can now go back to JuiceShop and I will have com
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a35fed00-a03a-4d9e-87a0-880aaf8757a6)
 
+## Requirement 6 - Exploit an Authentication Bypass vulnerability
+
+### What is Broken authentication
+
+### Attempt 1
+
+In this attempt, I'm going to try and bypass the CAPTCHA and submit 10 or more customer feedbacks within 20 seconds. I will demonstrate what I have done to complete this challenge. First of all, on JuiceShop they have a section where a customer can submit some feedback on their website. To complete this attack you'd need to fill out the customer feedback form. Below is a picture of the form which needs to be filled out.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/4894fae2-5e90-41d5-b944-a55f130a356d)
+
+Before I click submit BurpSuite needs to be open and intercept to be turned on. Once that is on I can then press the submit button, once I pressed the submit button I went back onto BurpSuite and went over to the HTTP history tab under Proxy and then all the history appeared from when I pressed the submit button. Now what I need to do is to find the request from when the submit button was pressed. To find this easier I will need to look for ```/api/Feedbacks/```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/35084845-60b5-4ab4-824b-be2109e9da51)
+
+Now that I have found it I can see the information I entered appear on the request tab, this is how I know that I am on the correct one. Now the next step is to send this request to the intruder. Once in the intruder tab, I would need to highlight the comment I made and then add special characters to it, ```§```.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2daf582a-8929-444f-b4fc-6ac3f5dd4ab0)
+
+Now that I've added the character to both ends of the comment I made I can then make my way over to the "Payloads" tab. In the "Payloads" tab there is an option called "Payload settings [Simple List]" In this section, I will need to add numbers from 1 to 11.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9fe4dfb1-a3cb-46a4-b8fc-945f732d96d8)
+
+Now that I've added the numbers in I can start the attack, when I press the ```Start attack``` button another window comes up and shows each payload being executed and it does this 11 times.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/77558ebf-ec80-4083-b59c-fb8b4f5d1a7b)
+
+Now when you go back onto JuiceShop it shows that you have completed the challenge. Now to see if the attack worked I can sign into the admin account and go to the administration page and here I can see all the customer feedback including the ones I have done in the attack.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2ee568a4-b0c1-40e7-8f11-c46b4df925ad)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c60b2fd2-58b4-45eb-a0df-a1c12f9794b3)
+
+### Attempt 2
+
+In this attempt, I am going to try and access the scoreboard of JuiceShop. The Scoreboard in Juiceshop allows you to track all the challenges you've done. At first, the scoreboard couldn't be accessed from the menu on JuiceShop. In this attempt, I am going to try and access the scoreboard.
+
+For me to access the scoreboard I need to open the inspect element on JuiceShop and it will bring me to the elements page.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9631347a-2410-4224-b187-85546d7dbdbe)
+
+Now I would need to navigate to the "Sources" tab. To reach this tab I would need to go to Debugger -> Sources. Now that I am on the Sources tab I would need to click on the file called ```main.js```, Once I have clicked on that file this should appear
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/82e90bf1-6048-4aae-ae7f-e9e84fcf2ef7)
+
+The next step is to search the path of scoreboards, to do this I would need to do ```CTRL + F```, which will allow me to search for ```score-board```, Once this has been put into the search bar the I went down one on the arrow and it took me to the path for score-boards.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/332f15f7-e053-498b-8c3f-1634935ea272)
+
+Now that I have found the path for the scoreboard I can now put this into the search bar of Firefox.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/005c3830-f1be-4d08-8af4-0fefee67575a)
+
+Now when I search for this It will take me to the Scoreboards page and I can view what challenges I have done
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/787a9d82-b8ad-4be7-84ed-709f7ef3e54b)
+
+### Attempt 3
+
+In this attempt, I am going to try and change the bender password without using SQL injection or forget password. For this attempt what I would need to do is sign into the benders account how I have done this using his email which is bender@juice-sh.op but I would need to add an apostrophe and 2 dashes so it will look like this ```bender@juice-sh.op'--``` and for the password, I can just put ```123```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0944b296-e2f7-4251-b3c5-ad3a5f7e093e)
+
+Now that I am logged into this account I would need to navigate over to "change password", to get to change password I would need to click on account -> privacy & security -> change password
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/48d4c09f-4fd3-4e50-9757-b3a8a07b9a10)
+
+Now that I am on this page I can fill in the information required. Whilst I'm on this page I have BurpSuite running in the background and is looking out for any requests made by me. The information put in was ```1234```, ```123456``` and ```123456```, The reason for the last 2 passwords being longer than the first is because the password must be 5-20 characters long so ```1234```won't be accepted. Once all of the information has been filled in I can now press ```change```.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ba37aaa4-4bed-4cb4-88da-60ad9f32aee8)
+
+Once I pressed to change it said "Current password does not match", this is fine and now we can make our way over to BurpSuite. Now that I am on BurpSuite and HTTP history I can now see that a request for password change has been made, and I can see that the passwords I used are there in the RAW file.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dcf7d1c0-07e8-4c4a-a3e7-64e6f248c5d2)
+
+The next step for me is to send the request to the repeater and I can do this by pressing ```CRTL + R```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2800f2f1-64d8-42fd-8ea5-1eb17585b427)
+
+Once in the repeater, I can see that the current password is not correct. Now the next step I need to do is to get rid of the current password which is shown below
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/4296e607-bd57-44b9-944c-5e61b7d8076c)
+
+New version:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/d25c8382-8258-4b99-aa5b-2f031ba0eb5a)
+
+Now that I have gotten rid of the current password I can send the changes I made over to the response page and now I can see benders email and his password, the reason for his password looking like that is because has been turned into a hash.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/486c067f-c367-4992-8164-1edbb921fa46)
+
+As part of this challenge and to complete it I would need to change his password to ```slurmCl4ssic```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a4e37e8a-f4b0-44ed-a634-6914798483bc)
+
+Now if I send the request over to the response I will get the same information outputted back to me but the password hash has been changed due to me changing the password to ```slurmCl4ssic```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/b1779334-4be6-4fa7-874a-6208244c90a9)
+
+Since this has been completed I can now go back to JuiceShop and I will have completed the challenge
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a35fed00-a03a-4d9e-87a0-880aaf8757a6)
+
+## Requirement 7 - Exploit an Improper input Validation vulnerability
+
+### What is Improper Input Validation vulnerability?
+
+### Attempt 1
+
+In this attempt, I am going to try and upload a file that has no .pdf or .zip extensions. First of all, what I need to do is file a complaint on JuiceShop
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c1f59acc-b784-4cd0-b192-4ddf144d79c3)
+
+The next step is to add a file, What I did beforehand is I created a text document on my desktop and put "hello" in it, I then saved it as a pdf with the name ```doc1.pdf```, now that I have a file to upload I can click on upload and select the file I created.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/f8cb71e6-937f-437c-99d0-7ccb9d5de459)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/b918489b-6fd4-4b19-a5b9-d1f19808db73)
+
+Now the next step is to file the complaint. Once I pressed submit the complaint was filed and I went over to BurpSuite where I was on the HTTP history tab, I will need to look for the request called ```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/05ffb705-f5ea-42fe-9d2c-baf20050708e)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/d1ea6a54-584b-4be0-b82e-973e6ba7bb6e)
+
+
 
 ## _References used_
 
