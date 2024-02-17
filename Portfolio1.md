@@ -439,12 +439,45 @@ The next step is to add a file, What I did beforehand is I created a text docume
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/b918489b-6fd4-4b19-a5b9-d1f19808db73)
 
-Now the next step is to file the complaint. Once I pressed submit the complaint was filed and I went over to BurpSuite where I was on the HTTP history tab, I will need to look for the request called ```
+Now the next step is to file the complaint. Once I pressed submit the complaint was filed and I went over to BurpSuite where I was on the HTTP history tab, I will need to look for the request called ```/file-upload```.
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/05ffb705-f5ea-42fe-9d2c-baf20050708e)
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/d1ea6a54-584b-4be0-b82e-973e6ba7bb6e)
 
+Now that I have found the request I can send it to the repeater. Once in the repeater, this is the information I will be presented with
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/fffb9ee6-d599-4990-88f8-00c58955ed2b)
+
+Now I can view the content of the file which in this case is just "hello". Now the next step is to delete the content of the file and replace it with some data from a PNG file which was on my desktop. 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6d79a572-6b0f-4e76-9a8c-247c417c6102)
+
+This is the PNG file I am using:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/550f1b35-d33a-4959-8419-53cdb9ccae73)
+
+Now that the data has been deleted the next step is to get the data from the PNG file to do this I will need to open the image within Notepad and I will be presented with this information
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/25d250ab-b71e-4f26-b9ec-148e8b337d50)
+
+Now that I have some of the data from the PNG file I will need to paste it into BurpSuite in the place where "hello" was, 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0e75ce11-718a-4162-9450-29858a20f10a)
+
+The next step is to change the extensions from PDF to PNG
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/34d3d938-53c8-43ff-926b-e1d44102b784)
+
+Updated version:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9bdd3f0c-2928-4ad2-97e5-f6a95bd15e5e)
+
+Now that has been done I can send the request to the responses tab and once that is done I can now go back onto JuiceShop I have now completed that challenge
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a2ce8e11-01ad-4021-a68a-600cdfdbe3ba)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/70e96d93-9134-4722-95c3-adc163bf199c)
 
 
 ## _References used_
