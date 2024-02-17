@@ -275,6 +275,52 @@ Now when I search for this It will take me to the Scoreboards page and I can vie
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/787a9d82-b8ad-4be7-84ed-709f7ef3e54b)
 
+### Attempt 3
+
+In this attempt, I am going to try and change the bender password without using SQL injection or forget password. For this attempt what I would need to do is sign into the benders account how I have done this using his email which is bender@juice-sh.op but I would need to add an apostrophe and 2 dashes so it will look like this ```bender@juice-sh.op'--``` and for the password, I can just put ```123```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0944b296-e2f7-4251-b3c5-ad3a5f7e093e)
+
+Now that I am logged into this account I would need to navigate over to "change password", to get to change password I would need to click on account -> privacy & security -> change password
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/48d4c09f-4fd3-4e50-9757-b3a8a07b9a10)
+
+Now that I am on this page I can fill in the information required. Whilst I'm on this page I have BurpSuite running in the background and is looking out for any requests made by me. The information put in was ```1234```, ```123456``` and ```123456```, The reason for the last 2 passwords being longer than the first is because the password must be 5-20 characters long so ```1234```won't be accepted. Once all of the information has been filled in I can now press ```change```.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ba37aaa4-4bed-4cb4-88da-60ad9f32aee8)
+
+Once I pressed to change it said "Current password does not match", this is fine and now we can make our way over to BurpSuite. Now that I am on BurpSuite and on HTTP history I can now see that a request for password change has been made, and I can see that the passwords I used are there in the RAW file.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/dcf7d1c0-07e8-4c4a-a3e7-64e6f248c5d2)
+
+The next step for me is to send the request to the repeater and I can do this by pressing ```CRTL + R```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2800f2f1-64d8-42fd-8ea5-1eb17585b427)
+
+Once in the repeater, I can see that the current password is not correct. Now the next step I need to do is to get rid of the current password which is shown below
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/4296e607-bd57-44b9-944c-5e61b7d8076c)
+
+New version:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/d25c8382-8258-4b99-aa5b-2f031ba0eb5a)
+
+Now that I have gotten rid of the current password I can send the changes I made over to the response page and now I can see benders email and his password, the reason for his password looking like that is because has been turned into a hash.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/486c067f-c367-4992-8164-1edbb921fa46)
+
+As part of this challenge and to complete it I would need to change his password to ```slurmCl4ssic```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a4e37e8a-f4b0-44ed-a634-6914798483bc)
+
+Now if I send the request over to the response I will get the same information outputted back to me but the password hash has been changed due to me changing the password to ```slurmCl4ssic```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/b1779334-4be6-4fa7-874a-6208244c90a9)
+
+Since this has been completed I can now go back to JuiceShop and I will have completed the challenge
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a35fed00-a03a-4d9e-87a0-880aaf8757a6)
+
 
 ## _References used_
 
