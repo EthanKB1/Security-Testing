@@ -1,3 +1,9 @@
+**Ethan Bannister**
+**BAN22597236**
+**Security Testing - Portfolio 1**
+**Due date - 19/02/2024**
+
+
 # Portfolio 1 - Security Testing
 
 ## Requirement 3 - Exploit a Cross-Site Scripting vulnerability
@@ -472,6 +478,11 @@ What I am going to do now is search for ```logs``` in the URL and see where it b
 As I searched for logs within the support folder it took me to the access logs page which allows me to have access to all the log files. When I click on the files they will automatically download and I can access them this is what the files contain 
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/016e7b55-d1c2-47a8-868d-2cd3589f70f6)
+
+## Requirement 10 - Job search employability activity
+
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a8c5988a-ab53-430e-8dd2-62bc36a85cc1)
 
 
 ## _References used_
