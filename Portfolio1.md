@@ -1,12 +1,12 @@
 # Portfolio 1 - Security Testing
 
-## Requirement 2 - OWASP Juice Shop Functionality testing
-
-1. What are the features and functions of the application?
-2. What are the inputs and outputs of the application?
-3. What are the expected and unexpected behaviours of the application?
-
 ## Requirement 3 - Exploit a Cross-Site Scripting vulnerability
+
+### What is Cross-site Scripting?
+
+Cross-site scripting is a type of security vulnerability typically found in web applications. XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users. A cross-site scripting vulnerability may be used by attackers to bypass controls.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/065b7254-384f-47a2-b938-8591b913ebbc)
 
 ### Attempt 1
 The first attempt at this was me inputting a piece of HTML code into the search bar of JuiceShop
@@ -88,12 +88,17 @@ what this line of code is supposed to ```<img src="javascript:alert('XSS')">``` 
 
 ### What are SQL injection attacks?
 
+SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. This can allow an attacker to view data that they are not normally able to retrieve. This might include data that belongs to other users, or any other data that the application can access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application content or behaviour.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/8057fd48-498c-4201-8e24-64b7dba24fc5)
+
 
 ### Attempt 1
 
 For this attack, I signed in as an admin using this sign ```admin' or 1=1;-```
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/58cff92d-ee83-4a78-8d28-07f71b75d00b)
+
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/953b3519-6204-4805-8523-b85931a0b282)
 
 Another way of making this attack is through BurpSuite, How you'd make this injection attack is first to try and log into the admin account on JuiceShop by inputting ```admin``` and ```admin``` for both user and password, when this is done you'd get an error saying 'Invalid email or password'
@@ -112,7 +117,7 @@ Now the next step is to send this to the Repeater in Burpsuite, once this is in 
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c115495a-baa4-48d7-81d4-33c33b2a4eb1)
 
-Now in order to get the admin email you'd need to change the 'email' to ```admin' or 1=1 --```, once this has been done you can send the request and you will then be presented with a token and the email of the admin for juice shop
+Now to get the admin email you'd need to change the 'email' to ```admin' or 1=1 --```, once this has been done you can send the request and you will then be presented with a token and the email of the admin for juice shop
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6620ac9b-69e5-4add-bdb1-022ba686719c)
 
@@ -146,6 +151,7 @@ Now that you have forwarded the request you can turn intercept off and go back t
 In this attempt, I am going to try and get the admin password. From an earlier attempt, I was able to get the admin email but I was not able to get the password. Now what I am going to do is try and log in as the admin with the email I obtained but the password is just going to be ```fff```. Now what I need to do is open Burpsuite and turn Intercept on
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9d663952-27eb-4527-ac81-04e7cefa00dc)
+
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/0039d3e5-ceb6-42e5-b5af-012fbd4dd08a)
 
 Now the information it intercepted can be viewed and you can see the email and password used. Now the next step is to highlight all of the information and send it to the intruder
@@ -174,18 +180,21 @@ I won't be able to continue with this attack as I appear to be missing a folder 
 
 ### What are Broken access control attacks?
 
+Broken access control is a type of vulnerability that allows unauthorised users to gain access to sensitive data or systems. This can happen when controls such as authentication and authorisation are not properly implemented or when there are weaknesses in the way these controls are enforced.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/f598875d-4ad7-4967-b64e-7efabe7582cf)
 
 ### Attempt 1
 
-I'm going to view someone else basket other than mine. In order to do this I am going to sign into the admin account and head over to "Your Basket"
+I'm going to view someone else basket other than mine. To do this I am going to sign into the admin account and head over to "Your Basket"
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/2fcf35d2-3c32-45de-90a6-d03bc976f352)
 
-Now in order for me to view the other basket I would need to open the inspect panel and from there I would need to navigate over to the storage tab
+Now for me to view the other basket I would need to open the inspect panel and from there I would need to navigate over to the storage tab
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c38437f9-a6f0-4da7-ada2-d323f576bb4f)
 
-Once on the storage tab, I would need to navigate over to "Session Storage" where the HTTP address would appear, once on it there will be 2 items in a table which are ```bid``` and ```ItemTotal```. In order to view someone else's basket you'd need to change the ```bid``` value to a different number.
+Once on the storage tab, I would need to navigate over to "Session Storage" where the HTTP address would appear, once on it there will be 2 items in a table which are ```bid``` and ```ItemTotal```. To view someone else's basket you'd need to change the ```bid``` value to a different number.
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/922ccd04-1216-41d1-8030-bd9e7a0cc50b)
 
@@ -199,7 +208,7 @@ I have come across something when you change the ```bid``` value to be more than
 
 ### Attempt 2
 
-In this attempt, I am going to try and access the administration page that the juice shop has. I have done some research into this and in order for me to view the page I would need to be signed in as the admin if I was signed into any other account I wouldn't be allowed to access the page.
+In this attempt, I am going to try and access the administration page that the juice shop has. I have done some research into this and for me to view the page I would need to be signed in as the admin if I was signed into any other account I wouldn't be allowed to access the page.
 
 First of all for me to find the administration page I would need to go into the inspect panel and navigate my way to "Debugger" -> "Main.js". once you have the "Main'js" open you can then press ```CTRL + F``` and type in admin, Now you'd need to find the line of code which looks like ```path: 'administration'```
 
@@ -221,7 +230,12 @@ This is a quick attempt as this ties into Attempt 2 where we now have access to 
 
 ## Requirement 6 - Exploit an Authentication Bypass vulnerability
 
-### What is Broken authentication
+### What is Broken authentication ?
+
+Broken authentication is a web vulnerability that allows attackers to bypass authentication controls, steal someone's identity to log in, or break other security mechanisms.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/22e17bca-92dd-4dfd-9ff3-207eda1c5f6c)
+
 
 ### Attempt 1
 
@@ -478,7 +492,9 @@ Hacksplained (2020) ★★★★ Access Log (Sensitive Data Exposure) - https://
 
 What is Sensitive Data Exposure and How to Prevent it (2024) Available at: https://www.sentra.io/learn/sensitive-data-exposure (accessed 18 February 2024).
 
-‌
+What is SQL Injection? Tutorial & Examples | Web Security Academy (2024) Available at: https://portswigger.net/web-security/sql-injection#SnippetTab (accessed 18 February 2024).
+
+‌‌
 
 ‌
 
