@@ -325,6 +325,8 @@ Since this has been completed I can now go back to JuiceShop and I will have com
 
 ### What is Broken authentication
 
+
+
 ### Attempt 1
 
 In this attempt, I'm going to try and bypass the CAPTCHA and submit 10 or more customer feedbacks within 20 seconds. I will demonstrate what I have done to complete this challenge. First of all, on JuiceShop they have a section where a customer can submit some feedback on their website. To complete this attack you'd need to fill out the customer feedback form. Below is a picture of the form which needs to be filled out.
@@ -427,9 +429,14 @@ Since this has been completed I can now go back to JuiceShop and I will have com
 
 ### What is Improper Input Validation vulnerability?
 
+Improper Input Validation is a security vulnerability that happens when an application does not properly validate or sanitise input data before processing it. This vulnerability can allow an attacker to inject malicious input into the application, which can be used to compromise the system or steal sensitive information 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/5cd795bc-06c2-433f-84ed-e86a51d33e0d)
+
+
 ### Attempt 1
 
-In this attempt, I am going to try and upload a file that has no .pdf or .zip extensions. First of all, what I need to do is file a complaint on JuiceShop
+In this attempt, I am going to upload a file that has no .pdf or .zip extensions. First of all, what I need to do is file a complaint on JuiceShop
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c1f59acc-b784-4cd0-b192-4ddf144d79c3)
 
@@ -439,7 +446,7 @@ The next step is to add a file, What I did beforehand is I created a text docume
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/b918489b-6fd4-4b19-a5b9-d1f19808db73)
 
-Now the next step is to file the complaint. Once I pressed submit the complaint was filed and I went over to BurpSuite where I was on the HTTP history tab, I will need to look for the request called ```/file-upload```.
+Now the next step is to file the complaint. Once I pressed submit the complaint was filed and went over to BurpSuite where I was on the HTTP history tab, I will need to look for the request called ```/file-upload```.
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/05ffb705-f5ea-42fe-9d2c-baf20050708e)
 
@@ -449,7 +456,7 @@ Now that I have found the request I can send it to the repeater. Once in the rep
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/fffb9ee6-d599-4990-88f8-00c58955ed2b)
 
-Now I can view the content of the file which in this case is just "hello". Now the next step is to delete the content of the file and replace it with some data from a PNG file which was on my desktop. 
+Now I can view the file's content, which in this case is just "hello". Now the next step is to delete the content of the file and replace it with some data from a PNG file which was on my desktop. 
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/6d79a572-6b0f-4e76-9a8c-247c417c6102)
 
@@ -479,6 +486,82 @@ Now that has been done I can send the request to the responses tab and once that
 
 ![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/70e96d93-9134-4722-95c3-adc163bf199c)
 
+## Requirement 8 - Exploit a Sensitive Data Exposure vulnerability
+
+### What is sensitive data exposure?
+
+Sensitive Data exposure is a vulnerability that happens when a web application does not adequately protect sensitive information from being accessible to attackers. The information which it could include is credit card data, medical history, session tokens, or other authentication credentials.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c8090234-a0fb-48b2-877b-e7f8fe1295a3)
+
+There a three types of Sensitive Data exposure they are Availability breach, Confidentiality breach, and Integrity breach=
+
+### How to prevent it
+
+There are different practices which can help prevent sensitive data exposure and they are assessing risks associated with data, minimise data surface area, storing passwords using salted hashing functions and leveraging MFA, and disabling autocomplete and caching
+
+### Attempt 1
+
+For this attempt, I am going to try and gain access to any access log of the server. For this vulnerability, I am going to be using ```ffuf``` which stands for "Fuzz Faster you Fool". The intended use for ffuf is for discovering elements and content within web applications, or web servers. The next step is to open the terminal within Kali and type in ```ffuf```, Once I have typed that in I was presented with parameters which give me a list of commands which I can use and these different commands have different functionalities
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/3fbcd190-6bad-4150-8184-38166f94faae)
+
+The next step is to allocate a wordlist and a good wordlist on Kali is the dirb wordlist. So for me to use this wordlist I would need to input this command into the terminal ```ffuf -w /usr/share/wordlists/dirb/common.txt``` There is more to add to this command as we also need to add the URL and some parameters before entering the command. The next step is to add the URL of JuiceShop and include ```FUZZ``` at the end of the URL so, in this case, it's ```http://192.168.123.111:3000/FUZZ``` now when this is added together with the first command it should look like this ```ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.123.111:3000/FUZZ``` 
+
+Below is a screenshot of what the contents of the dirb wordlist are:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/7b360234-4a5e-4ecd-bb57-0abae682b39a)
+
+This is what it should look like in the terminal:
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a09a8b51-7c66-4463-a49e-fa89cffdda77)
+
+Now when you run the command this is what you will see
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/9c016fcd-26b5-49e7-af30-81d672419857)
+
+This will keep going on and on until it's finished so I stopped the process as I noticed that the size of the folders is 1987. With ffuf it allows me to filter out content sizes using the parameters ```-fs``` and ```1987```, so now the full command would be ```ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.123.111:3000/FUZZ -fs 1987```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/8f9248a6-39da-4384-813b-58b69740c6fa)
+
+Now when I run this command this is the output I get 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/a22bc57f-e3a1-4630-aac7-207c9fbfe5e3)
+
+Compared to before there are a lot fewer results showing up because we filtered out all the content with the size of 1987, The content which was found varies in content length and there are some interesting folders like "assets", "ftp" and so on. Now that I have some folders to go to I can put them at the end of the URL to see where it takes me.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/52d5a128-a802-4923-bf56-9b7125962df2)
+
+When I redirected the page to assets I was redirected to a blank page, based on this I think that there is nothing to be shown within the assets folder
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ca93a76d-09c8-4ab3-90c4-9fc7677e4526)
+
+Since assets don't provide me with any information I am going to move on to ```ftp```, I am going to edit the URL get rid of assets and change it to FTP
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/f73e440b-27df-4ffa-bfee-dd58d07adec4)
+
+When I searched for this page I came across some contents within the ftp folder
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/68e6a6d1-80ff-4081-8dcb-88b4a9562e3f)
+
+Based on the files presented to me the ones which stand out the most are ```incident-support.kdbx``` and ```legal.md```. The reason for this is that I am trying to find the access logs so based on these files it could be the support team or the legal team. Now with this information, I can go back to ffuf and alter the command so instead of using FUZZ on the main webpage itself I am going to try and FUZZ the support folder to see if it exists and if there is any information within it. So the command should look like this ```ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.123.111:3000/support/FUZZ -fs 1987```
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/ff761b92-71cc-4f7f-8928-8177f355460b)
+
+Once this has been completed there are 2 folders which I came across under the support folder.
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/c74f10a1-bf4e-4135-a836-59e89861bdb6)
+
+What I am going to do now is search for ```logs``` in the URL and see where it brings me
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/99b90908-b364-4b5b-8342-f19beacfa2ac)
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/868a662d-8f9f-4c9e-891a-76e4c95ec899)
+
+As I searched for logs within the support folder it took me to the access logs page which allows me to have access to all the log files. When I click on the files they will automatically download and I can access them this is what the files contain 
+
+![image](https://github.com/EthanKB1/Security-Testing/assets/157480256/016e7b55-d1c2-47a8-868d-2cd3589f70f6)
+
 
 ## _References used_
 
@@ -494,7 +577,13 @@ Gao, W. (2020) Juice Shop 3.6 - Client Side XSS Protection - https://www.youtube
 
 ‌thehackerish (2020) Broken Authentication and Session Management tutorial - thehackerish. Available at: https://thehackerish.com/broken-authentication-and-session-management-tutorial/ (accessed 17 February 2024).
 
+Hacksplained (2020) ★★★★ Access Log (Sensitive Data Exposure) - https://www.youtube.com/watch?v=RBTfGk-ZwnY
 
+What is Sensitive Data Exposure and How to Prevent it (2024) Available at: https://www.sentra.io/learn/sensitive-data-exposure (accessed 18 February 2024).
+
+‌
+
+‌
 
 
 ‌
